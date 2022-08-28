@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using WebAPI_EntityFramework.Models;
 
 namespace WebAPI_EntityFramework.Controllers;
@@ -8,12 +9,19 @@ namespace WebAPI_EntityFramework.Controllers;
 public class BuilderPatternController : ControllerBase
 {
     HouseBuilder _houseBuilder = new HouseBuilder();
+    private readonly AppSettings _appSettings;
+
+    public BuilderPatternController(IOptions<AppSettings> appSettings)
+    {
+        _appSettings = appSettings.Value;
+    }
 
     [HttpGet]
     public Task<IActionResult> Get()
     {
+        Console.WriteLine(_appSettings.UK);
+
         var newBuilder = _houseBuilder.addFloor().addRoom().build();
-        Console.WriteLine(newBuilder);
         return Task.FromResult<IActionResult>(Ok(newBuilder));
     }
 }
