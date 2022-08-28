@@ -7,6 +7,7 @@ public class ContextDB : DbContext
 {
     public ContextDB(DbContextOptions<ContextDB> options) : base(options)
     {
+        
     }
 
     public DbSet<Person> Persons { get; set; }
