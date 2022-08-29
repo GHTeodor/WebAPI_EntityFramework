@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using WebAPI_EntityFramework.Models;
 
@@ -17,6 +18,7 @@ public class BuilderPatternController : ControllerBase
     }
 
     [HttpGet]
+    [EnableCors("TestPolicy")]
     public Task<IActionResult> Get()
     {
         Console.WriteLine(_appSettings.UK);
