@@ -18,15 +18,12 @@ public class DbController : ControllerBase
     [HttpGet]
     public Task<IActionResult> Get()
     {
-        Console.WriteLine("_______________-----__________________");
-        Console.WriteLine(_dbService);
         return Task.FromResult<IActionResult>(Ok(_dbService.Get()));
     }
     
     [HttpGet("{id:int:min(1)}")]
     public Task<IActionResult> Get(int id)
     {
-        
         return Task.FromResult<IActionResult>(Ok(_dbService.GetById(id)));
     }
     
@@ -50,29 +47,4 @@ public class DbController : ControllerBase
         _dbService.DeleteById(id);
         return Task.FromResult<IActionResult>(Ok(id));
     }
-    
-    // ContextDB _contextDb;
-    // public DbController(ContextDB contextDb)
-    // {
-    //     _contextDb = contextDb;
-    // }
-    //
-    // [HttpGet]
-    // public async Task<IActionResult> Get()
-    // {
-    //     return Ok(_contextDb.Persons);
-    // }
-    // [HttpGet("{id:int}")]
-    // public Task<IActionResult> Get(int id)
-    // {
-    //     return Task.FromResult<IActionResult>(Ok(_contextDb.Persons.Find(id)));
-    // }
-    //
-    // [HttpPost]
-    // public async Task<IActionResult> Post([FromBody] Person el)
-    // {
-    //     _contextDb.Persons.Add(el);
-    //     _contextDb.SaveChanges();
-    //     return Ok(el);
-    // }
 }
